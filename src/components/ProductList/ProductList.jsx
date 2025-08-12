@@ -1,7 +1,11 @@
 import { useProductList } from "../../hooks/useProductList"
+import { Loader } from "../Loader/Loader"
 
 export const ProductList = () => {
     const { productList, loading, error } = useProductList()
+
+    if (loading) return <Loader />
+    if (error) return <Loader />
 
     return (
         <>

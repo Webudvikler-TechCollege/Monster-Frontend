@@ -3,7 +3,6 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import { BrowserRouter } from 'react-router-dom'
-import { HelmetProvider } from 'react-helmet-async'
 import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary.jsx'
 import { AuthProvider } from './providers/AuthProvider.jsx'
 
@@ -12,9 +11,7 @@ createRoot(document.getElementById('root')).render(
     <ErrorBoundary>
       <AuthProvider>
         <BrowserRouter>
-          <HelmetProvider>
-            <App />
-          </HelmetProvider>
+          <App />
         </BrowserRouter>
       </AuthProvider>
     </ErrorBoundary>
