@@ -1,21 +1,30 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-export const AuthContext = createContext()
+// Opretter en Context, der kan deles på tværs af komponenter
+export const AuthContext = createContext();
 
+// Provider-komponent, der wrapper app'en og giver auth-data videre
 export const AuthProvider = ({ children }) => {
-    const [ loginData, setLoginData ] = useState('')
+    const [loginData, setLoginData] = useState(null);
 
     useEffect(() => {
-        if(sessionStorage.getItem('access_token')) {
-            setLoginData(JSON.parse(sessionStorage.getItem('access_token')))            
+        try {
+            const raw = sessionStorage.getItem("access_token");
+            if (raw) { 
+                setLoginData(JSON.parse(raw));
+                
+            }
+        } catch (error) {
+            console.error("Kunne ikke parse access_token fra sessionStorage", error);
+            setLoginData(null);
         }
-    },[children])
+    }, [children]);
 
     return (
         <AuthContext.Provider value={{ loginData, setLoginData }}>
             {children}
         </AuthContext.Provider>
-    )
-}
+    );
+};
 
-export const useAuth = () => useContext(AuthContext)
+export const useAuth = () => useContext(AuthContext);
