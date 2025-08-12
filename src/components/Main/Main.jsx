@@ -1,6 +1,6 @@
 export const Main = ({children}) => {
   return (
-    <main>
+    <main className="w-full p-20">
         {children}
     </main>
   )

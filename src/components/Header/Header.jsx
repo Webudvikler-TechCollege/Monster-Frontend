@@ -1,7 +1,10 @@
+import { NavBar } from "../NavBar/NavBar"
+
 export const Header = () => {
   return (
-    <header>
-        My React Template
+    <header className="w-full p-4 flex justify-between">
+        <img src='/images/monster-logo.png' className="max-w-[300px]"/>
+        <NavBar />
     </header>
   )
 }

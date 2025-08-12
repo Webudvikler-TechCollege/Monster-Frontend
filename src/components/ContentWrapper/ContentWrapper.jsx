@@ -4,18 +4,16 @@
  * @param {*} props
  * @returns
  */
-import { Helmet } from "react-helmet-async";
-
 export const ContentWrapper = ({ title, subtitle, description, hidetitle, children }) => {
-    return (
-    <>
-      <Helmet>
-        <title>{title}</title>
-        {description && (
-          <meta name="description" content={description} />
-        )}
-      </Helmet>
+  document.title = title;
 
+  if (description) {
+    const meta = document.querySelector('meta[name="description"]');
+    if (meta) meta.setAttribute("content", description);
+  }
+
+  return (
+    <>
       <section>
         <div>
           {!hidetitle && (
@@ -24,7 +22,7 @@ export const ContentWrapper = ({ title, subtitle, description, hidetitle, childr
           {subtitle && <h3>{subtitle}</h3>}
         </div>
         <div>{children}</div>
-        </section>
+      </section>
     </>
   )
 }
