@@ -3,7 +3,7 @@ import { NavBar } from "../NavBar/NavBar"
 
 export const Header = () => {
   return (
-    <header className="w-full p-4 flex justify-between">
+    <header className="w-full p-4 flex justify-between bg-zinc-900">
         <img src='/images/monster-logo.png' className="max-w-[300px]"/>
         <NavBar />
         <LoginInfo />
